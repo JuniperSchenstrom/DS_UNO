@@ -1,0 +1,133 @@
+/* @formatter:off
+ *
+ * Dave Rosenberg
+ * Comp 2000 - Data Structures
+ * Lab: List application - card game
+ * Fall, 2022
+ *
+ * Usage restrictions:
+ *
+ * You may use this code for exploration, experimentation, and furthering your
+ * learning for this course. You may not use this code for any other
+ * assignments, in my course or elsewhere, without explicit permission, in
+ * advance, from myself (and the instructor of any other course).
+ *
+ * Further, you may not post (including in a public repository such as on github)
+ * nor otherwise share this code with anyone other than current students in my
+ * sections of this course. Violation of these usage restrictions will be considered
+ * a violation of the Wentworth Institute of Technology Academic Honesty Policy.
+ *
+ * Do not remove this notice.
+ *
+ * @formatter:on
+ */
+
+package edu.wit.scds.ds.list.app ;
+
+/**
+ * An enumeration of card suits. (Listing C-2 of Appendix C.)
+ * <p>
+ * You may want/need to adjust the priorities for your game. As provided, suits are
+ * ordered by priority:<br>
+ *
+ * <pre>
+ * Spades (highest) -> Diamonds -> Hearts -> Clubs -> none (lowest)
+ * </pre>
+ *
+ * @author Frank M. Carrano
+ * @author Timothy M. Henry
+ *
+ * @version 4.0
+ *
+ * @author David M Rosenberg
+ *
+ * @version 4.1.0 2016-03-16
+ *     <ul>
+ *     <li>enhanced definition: added display name and graphic
+ *     <li>added test driver main()
+ *     </ul>
+ * @version 4.1.1 2021-11-19
+ *     <ul>
+ *     <li>fill in Javadoc comments
+ *     <li>add Comparator/compare()
+ *     </ul>
+ * @version 4.2.0 2022-11-06 add switch for standard vs alternate priority
+ *
+ * @author Kathy Cao
+ *
+ * @version 4.3.0 2022-11-15 Modifications for use for our game
+ */
+public enum Color
+    {
+
+// @formatter:off
+//  Element   Display Name
+    /** Red */
+    RED      ( "R" ),
+    /** Yellow */
+    YELLOW   ( "Y" ),
+    /** Green */
+    GREEN    ( "G" ),
+    /** Blue */
+    BLUE     ( "B" ),
+    /** Wild */
+    WILD     ( "W" ),
+    /** Bad Input */
+    BAD     ( "X" ),
+    /** Deny card */
+    NONE     ( "N" )
+    ;
+// @formatter:on
+
+    // data fields
+    /** 'pretty' name for the suit */
+    private final String displayName ;
+
+    /**
+     * @param suitDisplayName
+     *     the color
+     */
+    private Color( final String suitDisplayName )
+        {
+        this.displayName = suitDisplayName ;
+
+        }   // end constructor
+
+
+    /**
+     * takes a string and returns corresponding color (i.e. R for RED enum)
+     *
+     * @param description
+     *     the string that tells the color
+     *
+     * @return the color that matches the description
+     */
+    public static Color interpretDescription( final String description )
+        {
+        Color correspondingColor = switch ( description.toLowerCase().charAt( 0 ) )
+            {
+            case 'r' -> RED;
+            case 'y' -> YELLOW;
+            case 'g' -> GREEN;
+            case 'b' -> BLUE;
+            case 'w' -> WILD;
+            case 'n' -> NONE;
+            default -> BAD;
+
+            } ;
+
+        return correspondingColor ;
+
+        } // end interpretDescription()
+
+
+    /**
+     * @return the display name
+     */
+    public String getDisplayName()
+        {
+        return this.displayName ;
+
+        }   // end getDisplayName()
+
+    }   // end enum Suit
